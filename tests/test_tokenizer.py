@@ -1,4 +1,3 @@
-import pytest
 from deepseek_v3_tokenizer.deepseek_tokenizer import tokenize_text, get_tokenizer
 
 
@@ -12,9 +11,12 @@ def test_get_tokenizer():
 def test_tokenize_text():
     text = "Hello, world!"
     tokens = tokenize_text(text)
+
+    expected_tokens = [19923, 14, 2058, 3]
+
     assert isinstance(tokens, list)
-    assert len(tokens) > 0
-    # Basic check: "Hello, world!" should produce some tokens
+    assert tokens == expected_tokens
+    assert len(tokens) == len(expected_tokens)
 
 
 def test_tokenize_empty_text():
@@ -27,5 +29,9 @@ def test_tokenize_empty_text():
 def test_tokenize_special_chars():
     text = "你好"
     tokens = tokenize_text(text)
+
+    expected_tokens = [30594]
+
     assert isinstance(tokens, list)
-    assert len(tokens) > 0
+    assert tokens == expected_tokens
+    assert len(tokens) == len(expected_tokens)

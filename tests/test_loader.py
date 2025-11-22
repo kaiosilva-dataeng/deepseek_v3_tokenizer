@@ -1,5 +1,4 @@
 import pytest
-from pathlib import Path
 from deepseek_v3_tokenizer.deepseek_tokenizer import load_text_files
 
 
@@ -49,15 +48,6 @@ def test_load_text_files_empty_dir(tmp_path):
 
 
 def test_load_text_files_non_existent():
-    """Test with non-existent directory (should probably raise or return empty,
-    current implementation might raise FileNotFoundError from Path.glob or earlier).
-    Actually Path(dir).glob() works on non-existent paths but yields nothing?
-    Let's check implementation.
-    Path(dir) works. glob works.
-    But if dir doesn't exist, glob won't find anything.
-    """
-    # The current implementation doesn't explicitly check if dir exists,
-    # but Path.glob will just return empty generator if path doesn't exist?
-    # Actually Path("non_existent").glob("*") works fine and returns empty.
+    """Test with non-existent directory."""
     result = load_text_files("non_existent_directory_12345")
     assert result == {}
